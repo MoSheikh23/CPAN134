@@ -1,0 +1,10 @@
+/* External CSS */
+a {
+    color: blue;
+    font-size: 18px;
+    text-decoration: none;
+}
+ 
+a:hover {
+    text-decoration: underline;
+}
