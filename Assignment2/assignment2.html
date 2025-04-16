@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Assignment 2 </title>
+</head>
+<body>
+  <h1>Assignment 2 - JavaScript and CSS</h1>
+  <script>
+    function calculateArea(width, height) {
+      while (typeof width !== 'number' || width <= 0 || typeof height !== 'number' || height <= 0) {
+        width = parseFloat(prompt("Enter a positive number for width:"));
+        height = parseFloat(prompt("Enter a positive number for height:"));
+      }
+      const area = width * height;
+      console.log("Area of rectangle:", area);
+      return area;
+    }
+    
+    calculateArea(10, 5);
+  </script>
+ <style>
+
+    button {
+      padding: 10px 20px;
+      font-size: 16px;
+    }
+  </style>
+  <button id="clickBtn">Click Me!</button>
+  <script>
+    const button = document.getElementById('clickBtn');
+    button.addEventListener('click', () => {
+      alert("Button clicked!");
+      button.style.backgroundColor = `hsl(${Math.floor(Math.random()*360)}, 70%, 60%)`;
+    });
+  </script>
+<style>
+ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  li {
+    margin: 5px 0;
+    padding: 5px;
+    background-color:orange;
+    cursor: pointer;
+    
+  }
+</style>
+  <ul id="myList">
+    <li>Random Item 1</li>
+    <li>Random Item 2</li>
+    <li>Random Item 3</li>
+  </ul>
+  <script>
+    const ul = document.getElementById('myList');
+    const li = document.createElement('li');
+    li.textContent = "Random Item 4";
+    ul.appendChild(li);
+
+    function getRandomString(length = 5) {
+      const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()';
+      return Array.from({ length }, () => chars[Math.floor(Math.random() * chars.length)]).join('');
+    }
+
+    ul.addEventListener('click', (e) => {
+      if (e.target.tagName === 'LI') {
+        e.target.textContent = getRandomString();
+        e.target.style.backgroundColor = `hsl(${Math.random()*360}, 70%, 90%)`;
+      }
+    });
+  </script>
+  <style>
+    .box {
+      width: 100px;
+      height: 100px;
+      padding: 10px;
+      border: 5px solid black;
+      margin: 10px;
+      background-color: red;
+    
+    }
+</style>
+ 
+<div class="box" id="boxModelDiv">Hover and Click Me</div>
+  <script>
+    
+    const box = document.getElementById('boxModelDiv');
+
+    box.addEventListener('click', () => {
+      box.style.backgroundColor = `hsl(${Math.random()*360}, 70%, 80%)`;
+    });
+
+    box.addEventListener('mouseover', () => {
+      box.style.borderColor = `hsl(${Math.random()*360}, 70%, 40%)`;
+    });
+  </script>
+</body>
+</html>

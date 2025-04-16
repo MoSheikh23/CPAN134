@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lab10</title>
+
+  <style>
+    body { font-family: Arial, sans-serif; }
+    #user-list { margin-top: 10px; }
+    .user-item { margin-bottom: 5px; }
+    .remove-btn { margin-left: 10px; }
+  </style>
+</head>
+
+<body>
+
+  <h2>USER LIST</h2>
+  <ol id="user-list" type="1"></ol>
+  <h3>Add a User</h3>
+  <input type="text" id="user-name" placeholder="Enter name">
+  <button id="add-user-btn">Add User</button>
+  <button id="clear-user-btn">Clear Users</button>
+
+  <script>
+    
+    const app = {
+      users: ["Alice", "Bob", "Charlie"], 
+      displayUsers: function() {
+        const userList = document.getElementById("user-list");
+        userList.innerHTML = ""; 
+        this.users.forEach((user, index) => {
+          const li = document.createElement("li");
+          li.className = "user-item";
+          li.textContent = user;
+
+          const removeBtn = document.createElement("button");
+          removeBtn.className = "remove-btn";
+          removeBtn.textContent = "Remove";
+          removeBtn.addEventListener("click", () => {
+            this.removeUser(index);
+          });
+
+          li.appendChild(removeBtn);
+          userList.appendChild(li);
+        });
+      },
+      
+      addUser: function() {
+        const input = document.getElementById("user-name");
+        const name = input.value.trim();
+        if (this.users.map(user => user.toLowerCase()).includes(name.toLowerCase())){
+          alert("User already exists.");
+          return;
+        }
+        if (name) {
+          this.users.push(name); 
+          input.value = ""; 
+          this.displayUsers(); 
+        } else {
+          alert("Please enter a name.");
+        }
+      },
+      
+      removeUser: function(index) {
+        this.users.splice(index, 1); 
+        this.displayUsers(); 
+      },
+      
+      clearUsers: function(){
+        this.users = [];
+        this.displayUsers();
+      }
+    };
+    
+    app.displayUsers();
+    
+    document.getElementById("add-user-btn").addEventListener("click", function() {
+      app.addUser();
+    });
+    document.getElementById("clear-user-btn").addEventListener("click", function() {
+      app.clearUsers();
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>JavaScript Object and Rest Parameters</title>
+    <style>
+        body {
+            font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+            padding: 10px;
+        }
+        button {
+            margin: 10px 0;
+            padding: 10px;
+            display: ruby;
+        }
+    </style>
+</head>
+<body>
+    <h1> JavaScript Objects and Rest Parameters</h1>
+    <p>Check the Console (F12) for Output</p>
+
+    <h2>Students</h2>
+    <button onclick="showStudentInfo()">Show Student Info</button>
+    <button onclick="addNewSubject()">Add New Subject</button>
+
+    <h2>Grades</h2>
+    <button onclick="calculateAndShowAverage()">Calculate Average (50,65,75,70,90)</button>
+
+    <script>
+        
+        const student = {
+            name: "Mohamed",
+            age: 26,
+            subjects: ["Math", "Science"],
+
+            
+            addSubject(subject) {
+                this.subjects.push(subject);
+                console.log(`Added subject: ${subject}`);
+            },
+
+            
+            displayInfo() {
+                console.log(`Name: ${this.name}`);
+                console.log(`Age: ${this.age}`);
+                console.log(`Subjects: ${this.subjects.join(", ")}`);
+            }
+        };
+
+        
+        function showStudentInfo() {
+            student.displayInfo();
+        }
+
+        
+        function addNewSubject() {
+            student.addSubject("English");
+            console.log("Updated Subject List:");
+            student.displayInfo();
+        }
+
+        
+        function calculateAverage(...scores) {
+            const sum = scores.reduce((total, num) => total + num, 0);
+            return sum / scores.length;
+        }
+
+        
+        function calculateAndShowAverage() {
+            const avg = calculateAverage(50, 65, 75, 70, 90);
+            console.log(`Average Score: ${avg}`);
+        }
+    </script>    
+</body>
+</html>
